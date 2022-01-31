@@ -175,8 +175,8 @@ def run(
             print("Epoch #{}".format(epoch), flush=True)
             for phase in ['train', 'val']:
                 start_time = time.time()
-                for i in range(torch.cuda.device_count()):
-                    torch.cuda.reset_peak_memory_stats(i)
+#                 for i in range(torch.cuda.device_count()):
+#                     torch.cuda.reset_peak_memory_stats(i)
 
                 ds = dataset[phase]
                 dataloader = torch.utils.data.DataLoader(
