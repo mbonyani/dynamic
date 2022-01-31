@@ -30,11 +30,11 @@ import echonet
 @click.option("--lr", type=float, default=1e-4)
 @click.option("--weight_decay", type=float, default=1e-4)
 @click.option("--lr_step_period", type=int, default=15)
-@click.option("--frames", type=int, default=12)
+@click.option("--frames", type=int, default=4)
 @click.option("--period", type=int, default=2)
 @click.option("--num_train_patients", type=int, default=None)
 @click.option("--num_workers", type=int, default=4)
-@click.option("--batch_size", type=int, default=8)
+@click.option("--batch_size", type=int, default=1)
 @click.option("--device", type=str, default=None)
 @click.option("--seed", type=int, default=0)
 def run(
@@ -51,11 +51,11 @@ def run(
     lr=1e-4,
     weight_decay=1e-4,
     lr_step_period=15,
-    frames=12,
+    frames=4,
     period=2,
     num_train_patients=None,
     num_workers=4,
-    batch_size=8,
+    batch_size=1,
     device=None,
     seed=0,
 ):
