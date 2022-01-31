@@ -116,14 +116,14 @@ def run(
 
     # Set device for computations
     if device is None:
-        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        device = "cpu" #torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
     # Set up model
     model = torchvision.models.video.__dict__[model_name](pretrained=pretrained)
 
     model.fc = torch.nn.Linear(model.fc.in_features, 1)
     model.fc.bias.data[0] = 55.6
-    if device.type == "cuda":
+    if device.type == "cudaa":
         model = torch.nn.DataParallel(model)
     model.to(device)
 
@@ -180,7 +180,7 @@ def run(
 
                 ds = dataset[phase]
                 dataloader = torch.utils.data.DataLoader(
-                    ds, batch_size=batch_size, num_workers=num_workers, shuffle=True, pin_memory=(device.type == "cuda"), drop_last=(phase == "train"))
+                    ds, batch_size=batch_size, num_workers=num_workers, shuffle=True)#, pin_memory=(device.type == "cuda"), drop_last=(phase == "train"))
 
                 loss, yhat, y = echonet.utils.video.run_epoch(model, dataloader, phase == "train", optim, device)
                 f.write("{},{},{},{},{},{},{},{},{}\n".format(epoch,
